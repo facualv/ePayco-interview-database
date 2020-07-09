@@ -6,7 +6,7 @@ CREATE TABLE `virtual_wallet_test`.`client` (
   `name` VARCHAR(70) NOT NULL,
   `phone` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(150) NOT NULL,
   PRIMARY KEY (`clientId`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE,
   UNIQUE INDEX `clientId_UNIQUE` (`clientId` ASC) VISIBLE);

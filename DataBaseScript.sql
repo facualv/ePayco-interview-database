@@ -19,7 +19,7 @@ CREATE TABLE `virtual_wallet_test`.`wallet` (
   UNIQUE INDEX `clientId_UNIQUE` (`clientId` ASC) VISIBLE,
   CONSTRAINT `fk_client_wallet`
     FOREIGN KEY (`clientId`)
-    REFERENCES `virtual_wallet`.`client` (`clientId`)
+    REFERENCES `virtual_wallet_test`.`client` (`clientId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
@@ -33,7 +33,7 @@ CREATE TABLE `virtual_wallet_test`.`transaction` (
   INDEX `fk_wallet_transaction_idx` (`walletId` ASC) VISIBLE,
   CONSTRAINT `fk_wallet_transaction`
     FOREIGN KEY (`walletId`)
-    REFERENCES `virtual_wallet`.`wallet` (`walletId`)
+    REFERENCES `virtual_wallet_test`.`wallet` (`walletId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
@@ -55,7 +55,7 @@ DELIMITER ;
 
 DROP TRIGGER IF EXISTS `virtual_wallet_test`.`tgr_balance_updater`;
 DELIMITER $$
-USE `virtual_wallet`$$
+USE `virtual_wallet_test`$$
 CREATE DEFINER=`root`@`localhost` TRIGGER  `virtual_wallet_test`.`tgr_balance_updater` AFTER INSERT ON `transaction` FOR EACH ROW BEGIN
     IF new.type = 'payment' THEN   
 		UPDATE wallet set 
